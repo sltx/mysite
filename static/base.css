@@ -1,0 +1,19 @@
+* {
+	margin:0;
+	padding:0;
+}
+
+body{
+	margin-top:70px!important;
+	margin-bottom: 70px!important;
+}
+footer {
+	width: 100%;
+	background: #333;
+	color: #a5a4a4;
+	text-align: center;
+	padding: 10px 0;
+}
+footer a {
+	color: #a5a4a4;
+}
