@@ -33,7 +33,8 @@ def blog_list(request):
     # BlogType.objects.annotate(blog_count=Count('blog'))
 
     # 获取日期归档对应的博客数量
-    blog_dates = Blog.objects.dates('created_time', 'month', order='DESC')
+    blog_dates = Blog.objects.dates('created_time', 'month',
+                                    )
     blog_dates_dict = {}
     for blog_date in blog_dates:
         blog_count = Blog.objects.filter(created_time__year=blog_date.year,

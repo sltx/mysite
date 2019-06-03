@@ -6,163 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>林臻飚的空间站</title>
     <!--全局样式-->
-    <link rel="stylesheet" type="text/css" href="../../../static/css/all-2.0.1.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/all-2.0.1.css">
     <!--使用bootstrap框架-->
-    <link rel="stylesheet" href="../../../static/css/bootstrap.min.css">
-    <script src="../../../static/js/jquery-1.12.4.min.js"></script>
-    <script src="../../../static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <script src="../static/js/jquery-1.12.4.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
     <!--百度收录自动提交-->
-    <script src="../../../static/js/push.js"></script>
+    <script src="../static/js/push.js"></script>
     <!--其他-->
-    <link rel="shortcut icon" href="../../../static/images/ben.png" type="image/x-icon">
-    <script src="../../../static/js/jquery.cookie.js"></script>
+    <link rel="shortcut icon" href="../static/images/ben.png" type="image/x-icon">
+    <script src="../static/js/jquery.cookie.js"></script>
     <!--IE html5支持-->
     <!--[if lt IE 9]-->
-    <script src="../../../static/js/html5shiv.min.js"></script>
+    <script src="../static/js/html5shiv.min.js"></script>
     <!--[endif]-->
-    <link rel="stylesheet" type="text/css" href="../../../static/css/blog.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/blog.css">
 </head>
 
 <body>
 <div class="navbar navbar-default navbar-fixed-top navbar-down" role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
-            <span class="sr-only">切换导航</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="{% url 'home' %}">林臻飚的空间站</a>
-    </div>
 
-    <div class="collapse navbar-collapse" id="example-navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li class="">
-                <a href="{% url 'home' %}">首页</a>
-            </li>
-            <li class="active">
-                <a href="{% url 'blog_list' %}">博客</a>
-            </li>
-            <li class="">
-                <a href="{% url 'news_list' %}">时讯</a>
-            </li>
-            <li class="">
-                <a href="{% url 'happy1' %}">祝福一</a>
-            </li>
-             <li class="">
-                <a href="{% url 'happy2' %}">祝福二</a>
-            </li>
-        </ul>
-
-    </div>
+    <h1 style="text-align:center;line-height: 10px;" >祝福</h1>
 </div>
 
 <div class="container">
-    <div class="col-md-9 col-xs-12">
-
-        <div class="blog-border">
+    <div class="col-md-12 col-xs-12">
+        <div style="margin-top: 5em" class="blog-border">
             <div class="blog-item">
-                <div class="blog-title">
-                    <a href="http://linzhenbiao.com/blog/6" target="_blank">我的网站搭建</a>
-                </div>
-                <div class="blog_descipt">
-                    Django的评论库如果填写不完整，或者提交出错，就会跑到自带的页面。关键是自带的评论页面超级不好看。所以得想方法避开。为Comments添加Ajax功能，免得提交出错跳到自带的评论页面。具体可参考django
-                    简易博客开发...
-                </div>
-                <div class="blog-tags">
-                    <ul>
-                        <li>
-                            <span>2019-6-3</span>
-                        </li>
-
-                        <li>
-                            阅读：10
-                        </li>
-                        <li>
-                            评论：10
-                        </li>
-                    </ul>
+                <div style="border-top-width: 0" class="blog-tags">
+                    <h1>老爸</h1>
+                    <h1>深深的祝福送到您的身边。愿您一生快乐，万事顺利，烦恼抛开；愿您幸福围绕，亲朋好友常聚身边；愿您财源滚滚，金银钞票用不完；愿您好运不断，笑逐颜开。儿子祝您生日快乐！</h1>
+                    <h1>2019-6-3</h1>
                 </div>
             </div>
-
         </div>
-
         <div class="clearfix"></div>
         <div class="blog_list_footer">
-            <span class="blog_footer_tip">共56篇博文。当前第6页，共6页</span>
-            <div class="blog-pages">
-                <ul class="pagination">
-                    <li>
-                        <a href="javascript:void(0);" onclick="page_goto(&#39;5&#39;);" aria-label="Previous">
-                            <span aria-hidden="true">«</span>
-                        </a>
-                    </li>
-
-
-                    <li><a href="http://yshblog.com/blog/?tag=1&amp;page=1">1</a></li>
-
-
-                    <li><span>...</span></li>
-
-
-                    <li><a href="http://yshblog.com/blog/?tag=1&amp;page=4">4</a></li>
-
-
-                    <li><a href="http://yshblog.com/blog/?tag=1&amp;page=5">5</a></li>
-
-
-                    <li class="active"><a href="http://yshblog.com/blog/?tag=1&amp;page=6">6</a></li>
-
-
-                    <li>
-                        <a href="javascript:void(0);" onclick="page_goto(&#39;6&#39;);" aria-label="Next">
-                            <span aria-hidden="true">»</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <ul class="pagination">
-                    <li id="page_goto">
-                    <span>
-                        <input type="text" value="2">
-                    </span>
-                    </li>
-                    <li><a href="javascript:void(0);" onclick="page_jump();">Go</a></li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-
-
-   <div class="col-md-3 col-xs-12 blog-border">
-
-        <div class="side-list">
-            <h4>随机推荐</h4>
-            <ul>
-                <li>
-                    <a href="http://yshblog.com/blog/114" target="_blank">我的网站搭建</a>
-                </li>
-            </ul>
+            <span class="blog_footer_tip"></span>
         </div>
     </div>
 </div>
 
 
 <div id="footer" class="page-bottom">
-
     <div class="container">
-
-            <p style="text-align: center;"><a style="color: #666;" href="http://www.beian.gov.cn/portal/index.do">浙ICP备19007951号-1</a></p>
+        <p style="text-align: center;"><a style="color: #666;" href="{% url 'home' %}">首页</a>
+            |<a style="color: #666;" href="http://www.beian.gov.cn/portal/index.do">浙ICP备19007951号-1</a></p>
 
     </div>
 
 
 </div>
-
-
-<a id="scrolltop" class="gotop" href="javascript:void(0)" title="返回顶部" style="display: block;"></a>
-
 <script type="text/javascript">
     $(function () {
         //滚动事件

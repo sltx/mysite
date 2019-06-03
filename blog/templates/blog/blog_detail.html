@@ -1,44 +1,325 @@
-{% extends 'base.html' %}
-{% block title %}
-    {{ blog.title }}
-{% endblock %}
-
+<!DOCTYPE html>
 {% load staticfiles %}
-{% block extend %}
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/blog.css' %}">
-{% endblock %}
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>林臻飚的空间站</title>
+    <!--全局样式-->
+    <link rel="stylesheet" type="text/css" href="../../../static/css/all-2.0.1.css">
+    <!--使用bootstrap框架-->
+    <link rel="stylesheet" href="../../../static/css/bootstrap.min.css">
+    <script src="../../../static/js/jquery-1.12.4.min.js"></script>
+    <script src="../../../static/js/bootstrap.min.js"></script>
+    <!--百度收录自动提交-->
+    <script src="../../../static/js/push.js"></script>
+    <!--其他-->
+    <link rel="shortcut icon" href="../../../static/images/ben.png" type="image/x-icon">
+    <script src="../../../static/js/jquery.cookie.js"></script>
+    <!--IE html5支持-->
+    <!--[if lt IE 9]-->
+    <script src="../../../static/js/html5shiv.min.js"></script>
+    <!--[endif]-->
+    <link rel="stylesheet" type="text/css" href="../../../static/css/blog.css">
+</head>
 
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-10 col-xs-offset-1">
-                <h3>{{ blog.title }}</h3>
-                <ul class="blog-info-description">
-                    <li>作者：{{ blog.author }}</li>
-                    <li>分类:<a href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a></li>
-                    <li>发表日期：{{ blog.created_time|date:"Y-m-d H:n:s" }}</li>
-                </ul>
-                <hr>
-                <div class="blog-content">{{ blog.content|safe }}</div>
-                >
-                <div class="blog-more">
-                    <p> 上一篇：
-                        {% if previous_blog %}
-                            <a href="{% url 'blog_detail' previous_blog.pk %}">{{ previous_blog.title }}</a>
-                        {% else %}
-                            没有了
-                        {% endif %}
-                    </p>
-                    <p> 下一篇：
-                        {% if next_blog %}
-                            <a href="{% url 'blog_detail' next_blog.pk %}">{{ next_blog.title }}</a>
-                        {% else %}
-                            没有了
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-        </div>
+<body>
+<div class="navbar navbar-default navbar-fixed-top navbar-down" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+            <span class="sr-only">切换导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'home' %}">林臻飚的空间站</a>
     </div>
 
-{% endblock %}
+    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="">
+                <a href="{% url 'home' %}">首页</a>
+            </li>
+            <li class="active">
+                <a href="{% url 'blog_list' %}">博客</a>
+            </li>
+            <li class="">
+                <a href="{% url 'news_list' %}">时讯</a>
+            </li>
+            <li class="">
+                <a href="{% url 'happy1' %}">祝福一</a>
+            </li>
+             <li class="">
+                <a href="{% url 'happy2' %}">祝福二</a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-md-12 col-xs-12">
+
+        <div class="blog-border">
+            <div class="blog-item">
+                <div class="blog-title">
+                    <a href="http://linzhenbiao.com/blog/6" target="_blank">我的网站搭建</a>
+                </div>
+                <div class="blog_descipt">
+                    Django的评论库如果填写不完整，或者提交出错，就会跑到自带的页面。关键是自带的评论页面超级不好看。所以得想方法避开。为Comments添加Ajax功能，免得提交出错跳到自带的评论页面。具体可参考django
+                    简易博客开发...
+                </div>
+                <div class="blog-tags">
+                    <ul>
+                        <li>
+                            <span>2019-6-3</span>
+                        </li>
+
+                        <li>
+                            阅读：10
+                        </li>
+                        <li>
+                            评论：10
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="blog_list_footer">
+            <span class="blog_footer_tip">共1篇博文。当前第1页，共1页</span>
+            <div class="blog-pages">
+                <ul class="pagination">
+                    <li>
+                        <a href="javascript:void(0);" onclick="page_goto(&#39;5&#39;);" aria-label="Previous">
+                            <span aria-hidden="true">«</span>
+                        </a>
+                    </li>
+
+
+                    <li><a href="http://yshblog.com/blog/?tag=1&amp;page=1">1</a></li>
+
+
+                    <li><span>...</span></li>
+
+
+                    <li><a href="http://yshblog.com/blog/?tag=1&amp;page=4">4</a></li>
+
+
+                    <li><a href="http://yshblog.com/blog/?tag=1&amp;page=5">5</a></li>
+
+
+                    <li class="active"><a href="http://yshblog.com/blog/?tag=1&amp;page=6">6</a></li>
+
+
+                    <li>
+                        <a href="javascript:void(0);" onclick="page_goto(&#39;6&#39;);" aria-label="Next">
+                            <span aria-hidden="true">»</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="pagination">
+                    <li id="page_goto">
+                    <span>
+                        <input type="text" value="2">
+                    </span>
+                    </li>
+                    <li><a href="javascript:void(0);" onclick="page_jump();">Go</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="footer" class="page-bottom">
+
+    <div class="container">
+
+            <p style="text-align: center;"><a style="color: #666;" href="http://www.beian.gov.cn/portal/index.do">浙ICP备19007951号-1</a></p>
+
+    </div>
+
+
+</div>
+
+
+<a id="scrolltop" class="gotop" href="javascript:void(0)" title="返回顶部" style="display: block;"></a>
+
+<script type="text/javascript">
+    $(function () {
+        //滚动事件
+        $(window).scroll(function () {
+            var top = $(window).scrollTop();
+            var navbar = $(".navbar-fixed-top");
+
+            if (top == 0) {
+                $(".navbar-fixed-top").removeClass("navbar-down");
+            } else {
+                $(".navbar-fixed-top").addClass("navbar-down");
+            }
+
+            if (top > 350) {
+                $("#scrolltop").fadeIn();
+            } else {
+                $("#scrolltop").fadeOut();
+            }
+        });
+
+        //点击返回头部效果
+        $("#scrolltop").click(function () {
+            $("html,body").animate({scrollTop: 0});
+        });
+
+        //窗体改变大小事件
+        $(window).resize(function () {
+            //正文高度
+            var body_height = $(document.body).outerHeight(true);
+
+            //底部元素高度
+            var bottom_height = $("#footer").outerHeight(true);
+
+            //浏览器页面高度
+            var window_height = $(window).height();
+
+            //判断并调整底部元素的样式
+            if ($("#footer").hasClass('page-bottom-abs')) {
+                if (body_height + bottom_height >= window_height) {
+                    $("#footer").removeClass('page-bottom-abs');
+                }
+            } else {
+                if (body_height < window_height) {
+                    $("#footer").addClass('page-bottom-abs');
+                }
+            }
+        });
+
+        //页面加载时，模拟触发一下resize事件
+        $(window).trigger('resize');
+
+        //检查登录状态和获取公告
+        var user_menu = '<li><a href="/user/login_page">登录/注册</a></li>';
+        $.ajax({
+            type: "GET",
+            url: "/user/check_is_login",
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                var notice;
+                if (data['code'] == '0') {
+                    user_menu = data['user_menu'];
+                    notice = data['notice'];
+                } else {
+
+                    notice = '暂无公告';
+                }
+                ;
+
+                //$("#user_part").html(user_menu);
+                $('.myRewards-text').html(notice);
+                tctipConfig.list.notice.text = notice;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $("#user_part").html(user_menu);
+            }
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(".pagination li a").each(function () {
+        if ($(this).text() == "6") {
+            $(this).parent().addClass("active");
+        }
+    });
+
+
+    function page_goto(page) {
+        var reg = /page=\d{0,2}/;
+        var url = window.location.href;
+
+        //判断是否有参数
+        if (reg.test(window.location.href)) {
+            url = url.replace(reg, 'page=' + page);
+        } else if (url.indexOf("?") == -1) {
+            url = url + '?page=' + page;
+        } else {
+            url = url + '&page=' + page;
+        }
+        //重定向
+        window.location.href = url;
+    }
+
+    function page_jump() {
+        var page = $("#page_goto input[type=text]")[0].value;
+        page_goto(page);
+    }
+
+    /*绑定复选框事件*/
+    $("#filter_form input[name=tag]").each(function () {
+        $(this).change(function () {
+            //移除“全部类别”的勾选
+            $('#check_all').removeAttr("checked");
+            //提交表单
+            $('#filter_form').submit();
+            //filter_params();
+        });
+    });
+    //“全部类别”的复选框
+    $("#check_all").change(function () {
+        //判断是否选中“全部类别”，才去掉其他类别的勾选，并提交表单
+        if ($("#check_all").is(':checked')) {
+            $("#filter_form input[name=tag]").each(function () {
+                $(this).removeAttr("checked");
+            });
+            $('#filter_form').submit();
+            //filter_params();
+        }
+    });
+    //“推荐”的复选框
+    $("#recommend").change(function () {
+        $('#filter_form').submit();
+        //filter_params();
+    });
+
+    function filter_params() {
+        window.location.href = '?' + $('#filter_form').serialize();
+    }
+
+    /*排序事件*/
+    function blog_sort(sf, st) {
+        $('#sort_sf').attr('value', sf);
+        $('#sort_st').attr('value', st);
+        $('#filter_form').submit();
+        //filter_params();
+    }
+
+    /*设置排序文本*/
+    function set_sort_content(field, sort_type) {
+        var texts = $('.filter-item a[name=' + field + ']');
+        var text = '';
+        if (texts.length > 1) {
+            text = texts[sort_type == '-1' ? 0 : 1].text.trim();
+        }
+
+        $('#sort_content').text(text);
+    }
+
+    set_sort_content('date', '-1');
+
+    /*清除搜索*/
+    function clear_keywords() {
+        $('#keywords').attr('value', '');
+        $('#filter_form').submit();
+        //filter_params();
+    }
+</script>
+
+
+</body>
+</html>
